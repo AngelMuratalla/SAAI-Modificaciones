@@ -148,6 +148,79 @@ function showServicios() {
 
 
 // ---------------------------------GRAFICOS---------------------------
+function createLineChart(chartObject){
+    c3.generate({
+        bindto: chartObject.bindto, //Especifica en que contenedor se generará
+        data: {
+            x: 'x',
+            columns: [
+                ['x', '2019-01', '2019-02', '2020-01', '2020-02', '2021-01', '2021-02', '2022-01', '2022-02', '2023-01', '2023-02', '2024-01', '2024-02'],
+                ['Matricula', 18452, 20035, 18860, 21064, 19634, 21245, 20125, 23796, 19863, 20843, 19536],
+            ],
+            type: 'line',
+            colors: {
+                Matricula: '#202c56 ' // Color de la línea
+                 
+            }
+        },
+        axis: {
+            x: {
+                type: 'category',
+                tick: {
+                    format: '%Y-%m',
+                    rotate: 75, // Rotar etiquetas para mejor visibilidad
+                    multiline: false
+                },
+                height: 70 // Ajuste de altura para espacio de las etiquetas rotadas
+            },
+            y: {
+                tick: {
+                    format: d3.format(",")  // Añade comas cada tres dígitos
+                },
+                label: {
+                    text: 'Número de alumnos',
+                    position: 'outer-middle'
+                }
+            }
+        },
+        legend: {
+            show: true,
+            position: 'left'
+        },
+        size: {
+            height:500,
+            width: 500
+        },
+        padding: {
+            top: 20,
+            right: 50,
+            bottom: 0,
+            left: 60
+        },
+        title: {
+            text: 'Matrícula Anual',
+            position: 'top-center'
+
+        },
+        point: {
+            r: 5, // Tamaño de los puntos en la línea
+            focus: {
+                expand: {
+                    r: 7  // Aumenta el tamaño al pasar el mouse
+                }
+            }
+        },
+        tooltip: {
+            format: {
+                value: function(value) {
+                    return d3.format(",")(value);  // Formato de número con comas
+                }
+            }
+        }
+    });
+}
+
+
     function generateCharts(){
         // var chart1 = c3.generate({
         //     bindto: '#chart1', // Especifica el contenedor para el gráfico
@@ -207,11 +280,6 @@ function showServicios() {
                     }
                 }
             },
-            // grid: {
-            //     y: {
-            //         show: true  // Añade líneas de referencia horizontales
-            //     }
-            // },
             legend: {
                 show: true,
                 position: 'left'
@@ -257,7 +325,7 @@ function showServicios() {
                     ['x', '2017', '2018', '2019', '2020', '2021', '2022', '2023'],
                     ['Titulados', 2273, 2275, 2473, 2351, 846, 2039, 3056],
                 ],
-                type: 'spline'
+                type: 'line'
             },
             axis: {
                 x: {
