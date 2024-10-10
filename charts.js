@@ -16,13 +16,13 @@ Estos indices se ocupan para decir exactamente que graficos vamos a generar al m
 de dar click en los botones que se muestran al cargar la pagina.
 */
 let allCharts = Array.from({ length: 26 }, (_, index) => index + 1);
-let alumnosCharts = [1, 2, 3, 4, 5, 6];
-let docentesCharts = [9, 10, 11, 18];
-let personalCharts = [12];
-let duacydCharts = [7, 8];
-let ueuCharts = [19];
-let investigacionCharts = [13, 14, 15, 16, 17];
-let serviciosCharts = [20];
+let alumnosCharts = [1, 4, 5, 6, 7, 8];
+let docentesCharts = [11, 12, 13, 20];
+let personalCharts = [14];
+let duacydCharts = [9, 10];
+let ueuCharts = [21];
+let investigacionCharts = [15, 16, 17, 18, 19];
+let serviciosCharts = [22,23,24,25,26];
 
 
 // Rellenar una agrupacion (wrapper) a partir de indices de graficos e id del contenedor a vincular
@@ -74,7 +74,7 @@ function showAll(){
     else{
         estadisticaFlag = true;
         fillWrapper(allCharts, "estadistica");
-        generateCharts();
+        generateCharts(allCharts);
     }
 }
 
@@ -87,7 +87,7 @@ function showAlumnos(){
     } else{
         alumnosFlag = true;
         fillWrapper(alumnosCharts, "alumnos");
-        generateCharts();
+        generateCharts(alumnosCharts);
     }
 }
 
@@ -98,7 +98,7 @@ function showDocentes() {
     } else {
         docentesFlag = true;
         fillWrapper(docentesCharts, "docentes");
-        generateCharts();
+        generateCharts(docentesCharts);
     }
 }
 
@@ -109,7 +109,7 @@ function showDuacyd() {
     } else {
         duacydFlag = true;
         fillWrapper(duacydCharts, "duacyd");
-        generateCharts();
+        generateCharts(duacydCharts);
     }
 }
 
@@ -120,7 +120,7 @@ function showPersonal() {
     } else {
         personalFlag = true;
         fillWrapper(personalCharts, "personal");
-        generateCharts();
+        generateCharts(personalCharts);
     }
 }
 
@@ -131,7 +131,7 @@ function showUEU() {
     } else {
         ueuFlag = true;
         fillWrapper(ueuCharts, "ueu");
-        generateCharts();
+        generateCharts(ueuCharts);
     }
 }
 
@@ -142,7 +142,7 @@ function showInvestigacion() {
     } else {
         investigacionFlag = true;
         fillWrapper(investigacionCharts, "investigacion");
-        generateCharts();
+        generateCharts(investigacionCharts);
     }
 }
 
@@ -153,7 +153,7 @@ function showServicios() {
     } else {
         serviciosFlag = true;
         fillWrapper(serviciosCharts, "servicios");
-        generateCharts();
+        generateCharts(serviciosCharts);
     }
 }
 
@@ -587,7 +587,7 @@ function createLineChart(chartObject){
             x: {
                 type: 'category',
                 tick: {
-                    rotate: 75, // Rotar etiquetas para mejor visibilidad
+                    rotate: 0, // Rotar etiquetas para mejor visibilidad
                     multiline: false
                 },
                 height: 70 // Ajuste de altura para espacio de las etiquetas rotadas
@@ -667,7 +667,7 @@ function createMultipleLineChart(chartObject){
             x: {
                 type: 'category',
                 tick: {
-                    rotate: 75, // Rotar etiquetas para mejor visibilidad
+                    rotate: 0, // Rotar etiquetas para mejor visibilidad
                     multiline: false
                 },
                 height: 70 // Ajuste de altura para espacio de las etiquetas rotadas
@@ -712,7 +712,7 @@ function createBarChart(chartObject){
                 type: 'category',
                 categories: chartObject.categories,
                 tick: {
-                    rotate: 75,
+                    rotate: 0,
                     multiline: false
                 },
                 label: {
@@ -786,8 +786,11 @@ function createPieChart(chartObject){
 
 
 
-function generateCharts(){
-    chartObjectsList.forEach(g => {
+//Genera los graficos indicados dentro de la lista de indices 
+function generateCharts(indexChartList){
+    indexChartList.forEach(i => {
+        const g = chartObjectsList[i-1];
+        // console.log(g);
         const type = g.type
         // console.log(type);
         switch (type) {
