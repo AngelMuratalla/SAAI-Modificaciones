@@ -829,12 +829,7 @@ function generateCharts(indexChartList, wrapperID){
                 console.log(`[${g.bindto} - ${type}] no se puede construir, no hay función para ello.`)
                 break;
           }
-    });
-    
-
-    
-    
-    
+    });  
 }
 
 
