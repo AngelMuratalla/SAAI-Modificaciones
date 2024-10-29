@@ -17,31 +17,40 @@
 
 	    <style>
 
-		@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
-        
-		*{
+			/* Importamos fuente Poppins */
+			@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+			
+			/* Normalizar estilos */
+			*{
                 box-sizing: border-box;
                 padding: 0;
                 margin: 0;
 				font-family: "Poppins", sans-serif;
             }
 
+			/* Contenedor de cada grafico */
 	        .chart-container {
 	        	margin: 1rem;
 	        }
 
+			/* Hacer que el texto de los titulos sea seleccionable */
+			.c3 text {
+				-webkit-user-select: auto;
+				-moz-user-select: auto;
+				user-select: auto;
+			}
 
+			/* Moficamos los estilos del texto de los titulos de cada grafica */
 			.c3-title {
-      /* font-family: 'Arial', sans-serif; Cambia la fuente */
-	  font-family: "Poppins", sans-serif;
-
-      font-size: 24px; /* Cambia el tamaño de la fuente */
-      font-weight: bold; /* Negrita */
-      color: #a6ad62; /* Cambia el color del título */
-  }
+				font-family: "Poppins", sans-serif;
+				font-size: 24px; 
+				font-weight: bold; 
+				color: #a6ad62; 
+			}
 
 
-            .card-header{
+			/* Estilos de cada sección (acordeón) */
+            .accordion-header{
                 background-color: #4CAF50; 
                 /* padding-top: 1.25rem 0;  */
                 border-radius: 0.625rem; 
@@ -55,20 +64,21 @@
                 margin-top: 1rem;
             }
 
-            .card-header:last-of-type{
+			/* Añadimos un pequeño espacio al final */
+            .accordion-header:last-of-type{
 				margin-bottom: 3rem;
 			}
 
-            .card-title{
+			/* Estilos de titulo de acordeón */
+            .accordion-title{
                 padding: 0.5rem 0;
                 font-size: 1.2rem;
 				width: 100%;
 				height: 100%;
-				text-align: center;
-                /* font-family: ; */
-				
+				text-align: center;	
             }
 
+			/* Estilos de agrupación de gráficas */
             .chart-wrapper{
                 background-color: #fff;
                 color: #3f3f3f;
@@ -82,162 +92,47 @@
     <BODY>
 	    <div class="container cuerpo-principal">
 
-            <div class="card-header"  style="background: linear-gradient(45deg, #000000, #434343);">
-                <div class="card-title" onclick="showAll()">Estadísticas</div>
+            <div class="accordion-header"  style="background: #012A4A;">
+                <div class="accordion-title" onclick="showAll()">Estadísticas</div>
                 <div class="chart-wrapper" id="estadistica">
                 </div>
             </div>
             
-            <div class="card-header" style="background: linear-gradient(to right, #32cd32, #228b22);">
-				<div class="card-title" onclick="showAlumnos()">Alumnos</div>
-				<div class="chart-wrapper" id="alumnos"></div>
-			</div>
-			
-			<div class="card-header" style="background: linear-gradient(to right, #ff4500, #ff6347);">
-				<div class="card-title" onclick="showDocentes()">Docentes</div>
-				<div class="chart-wrapper" id="docentes"></div>
-			</div>
-			
-			<div class="card-header" style="background: linear-gradient(to right, #ffd700, #ffc107);">
-				<div class="card-title" onclick="showDuacyd()">DUACyD</div>
+			<div class="accordion-header" style="background: #013A63;">
+				<div class="accordion-title" onclick="showDuacyd()">DUACyD</div>
 				<div class="chart-wrapper" id="duacyd"></div>
 			</div>
 			
-			<div class="card-header" style="background: linear-gradient(to right, #1e90ff, #00bfff);">
-				<div class="card-title" onclick="showPersonal()">Personal</div>
+			<div class="accordion-header" style="background: #01497C;">
+				<div class="accordion-title" onclick="showDocentes()">Docentes</div>
+				<div class="chart-wrapper" id="docentes"></div>
+			</div>
+
+			<div class="accordion-header" style="background: #014F86;">
+				<div class="accordion-title" onclick="showAlumnos()">Alumnos</div>
+				<div class="chart-wrapper" id="alumnos"></div>
+			</div>
+
+
+			<div class="accordion-header" style="background: #2A6F97;">
+				<div class="accordion-title" onclick="showPersonal()">Personal</div>
 				<div class="chart-wrapper" id="personal"></div>
 			</div>
-			
-			<div class="card-header" style="background: linear-gradient(to right, #ffa500, #ff8c00);">
-				<div class="card-title" onclick="showUEU()">Unidad de Educación Universitaria</div>
-				<div class="chart-wrapper" id="ueu"></div>
-			</div>
-			
-			<div class="card-header" style="background: linear-gradient(to right, #800080, #9932cc);">
-				<div class="card-title" onclick="showInvestigacion()">Investigación</div>
+
+			<div class="accordion-header" style="background: #2C7DA0;">
+				<div class="accordion-title" onclick="showInvestigacion()">Investigación</div>
 				<div class="chart-wrapper" id="investigacion"></div>
 			</div>
 			
-			<div class="card-header" style="background: linear-gradient(to right, #ff1493, #ff69b4);">
-				<div class="card-title" onclick="showServicios()">Servicios</div>
-				<div class="chart-wrapper" id="servicios"></div>
+			<div class="accordion-header" style="background: #468FAF;">
+				<div class="accordion-title" onclick="showUEU()">Unidad de Educación Universitaria</div>
+				<div class="chart-wrapper" id="ueu"></div>
 			</div>
 			
-			
-            
-
-						<br>
-<!-- 
-						<div id="chart-container">
-						    <h3>Matrícula FES Aragón 2019-2024</h3>
-						    <div id="chart"></div>
-						</div>
-
-						<div id="chart2-container">
-						    <h3>Titulación enero 2017 a marzo 2024</h3>
-						    <div id="chart2"></div>
-						</div>
-
-						<div id="chart3-container">
-						    <h3>Eficiencia terminal en tiempo curricular-Licenciatura</h3>
-						    <div id="chart3"></div>
-						</div>
-
-						<div id="chart4-container">
-						    <h3>Eficiencia terminal total-Licenciatura</h3>
-						    <div id="chart4"></div>
-						</div>
-
-						<div id="chart5-container">
-						    <h3>Movilidad</h3>
-						    <div id="chart5"></div>
-						</div>
-
-						<div id="chart6-container">
-						    <h3>Alumnas y alumnos becados</h3>
-						    <div id="chart6"></div>
-						</div>
-
-						<div id="chart7-container">
-						    <h3>Servicio social</h3>
-						    <div id="chart7"></div>
-						</div>
-
-						<div id="chart8-container">
-						    <h3> Educación continua</h3>
-						    <div id="chart8"></div>
-						</div>
-
-						<div id="chart9-container">
-						    <h3>Centro de lenguas 2021-I a 2024-II</h3>
-						    <div id="chart9"></div>
-						</div>
-
-						<div id="chart10-container">
-						    <h3>Personal académico 2024</h3>
-						    <div id="chart10"></div>
-						</div>
-
-						<div id="chart11-container">
-						    <h3>Grado académico de la comunidad docente</h3>
-						    <div id="chart11"></div>
-						</div>
-
-						<div id="chart12-container">
-						    <h3>Estímulos</h3>
-						    <div id="chart12"></div>
-						</div>
-
-						<div id="chart13-container">
-						    <h3>Personal administrativo y de base</h3>
-						    <div id="chart13"></div>
-						</div>
-
-						<div id="chart14-container">
-						    <h3>Proyectos de investigación 2024</h3>
-						    <div id="chart14"></div>
-						</div>
-
-						<div id="chart15-container">
-						    <h3>Proyectos de investigación desarrollados con financiamiento institucional</h3>
-						    <div id="chart15"></div>
-						</div>
-
-						<div id="chart16-container">
-						    <h3>Total de docentes adscritos al Sistema Nacional de Investigación (SNI)</h3>
-						    <div id="chart16"></div>
-						</div>
-
-						<div id="chart17-container">
-						    <h3>Docentes en el Sistema Nacional de Investigadores (SNI)</h3>
-						    <div id="chart17"></div>
-						</div>
-
-						<div id="chart18-container">
-						    <h3>Publicaciones</h3>
-						    <div id="chart18"></div>
-						</div>
-
-						<div id="chart19-container">
-						    <h3>Programa de actualización y superación docente (PASD) 2017-2024</h3>
-						    <div id="chart19"></div>
-						</div>
-
-						<div id="chart20-container">
-						    <h3>Actividades culturales 2023-2024</h3>
-						    <div id="chart20"></div>
-						</div>
-
-						<div id="chart21-container">
-						    <h3>Actividades deportivas 2023</h3>
-						    <div id="chart21"></div>
-						</div>
-
-						<div id="chart22-container">
-						    <h3>Biblioteca</h3>
-						    <div id="chart22"></div>
-						</div> -->
-
+			<div class="accordion-header" style="background: #61A5C2;">
+				<div class="accordion-title" onclick="showServicios()">Servicios</div>
+				<div class="chart-wrapper" id="servicios"></div>
+			</div>
 
 		</div>
 

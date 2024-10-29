@@ -318,22 +318,36 @@ const chartObjectsList = [
             ['Programas de servicio social', 816],
             ['Ganadores del premio al servicio social', 58]
         ],
+        title: 'Servicio Social',
         colors: ['#1f77b4', '#ff7f0e'],
         type: 'donut',
     },
     {
         bindto: `#chart${chartNumber++}`, 
+        // data: {
+        //     columns: [
+        //         ['Comunidad atendida', 23630],
+        //         ['Cursos realizados', 1097]
+        //     ],
+        //     type: 'bar'
+        // },
+
         data: {
             columns: [
                 ['Comunidad atendida', 23630],
                 ['Cursos realizados', 1097]
             ],
-            type: 'bar'
+            types: {
+                data1: 'area-spline',
+                data2: 'area-spline'
+                // 'line', 'spline', 'step', 'area', 'area-step' are also available to stack
+            },
+            groups: [['Comunidad atendida', 'Cursos realizados']]
         },
         title: 'Educación continua',
         xTitle: '',
         yTitle: '',
-        type: 'bar'
+        type: 'stakedArea'
     },
     {
         bindto: `#chart${chartNumber++}`,
@@ -795,9 +809,21 @@ function createPieChart(chartObject,wrapperID){
             pattern: chartObject.colors
         },
         title: {
-            text: 'Personal académico 2024'
+            text: chartObject.title
         }
     });
+}
+
+function createStackedAreaChart(chartObject){
+    c3.generate({
+        data: chartObject.data,
+        color: {
+            pattern: chartObject.colors
+        },
+        title: {
+            text: chartObject.title
+        }
+    });    
 }
 
 
@@ -824,6 +850,9 @@ function generateCharts(indexChartList, wrapperID){
                 break;
             case 'pie':
                 createPieChart(g, wrapperID);
+                break;
+            case 'stakedArea':
+                createStackedAreaChartChart(g, wrapperID);
                 break;
             default:
                 console.log(`[${g.bindto} - ${type}] no se puede construir, no hay función para ello.`)

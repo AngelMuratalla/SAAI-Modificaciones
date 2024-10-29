@@ -15,10 +15,10 @@ de dar click en los botones que se muestran al cargar la pagina.
 let allCharts = Array.from({ length: 26 }, (_, index) => index + 1);
 let alumnosCharts = [1, 4, 5, 6, 7, 8];
 let docentesCharts = [11, 12, 13, 20];
-let personalCharts = [14];
+let personalCharts = [14,15];
 let duacydCharts = [9, 10];
 let ueuCharts = [21];
-let investigacionCharts = [15, 16, 17, 18, 19];
+let investigacionCharts = [16, 17, 18, 19];
 let serviciosCharts = [22,23,24,25,26];
 
 
@@ -158,6 +158,9 @@ function showServicios() {
 // ---------------------------------GRAFICOS---------------------------
 const chartHeight = 500;
 const chartWidth = 0;
+const legendPadding = 15;
+const colorPallette = ['#2E86C1', '#F39C12', '#28B463', '#8E44AD', '#E74C3C', '#1ABC9C', '#F1C40F', '#D35400', '#5D6D7E', '#C0392B'];
+
 
 /* Cada elemento de la lista (chartObjet) debe tener dentro de si los siguientes datos
 
@@ -202,6 +205,7 @@ const chartObjectsList = [
         title: 'Matrícula estudiantil de licenciaura - FES Aragón Semestre 2025-I',
         yTitle: 'Alumnos',
         type: 'multipleLine'
+        
     },
     {
         bindto: `#chart${chartNumber++}`, 
@@ -223,6 +227,8 @@ const chartObjectsList = [
         },
         title: 'Matrícula estudiantil de posgrado - FES Aragón Semestre 2025-I',
         yTitle: 'Alumnos',
+        rotate: 75,
+        legendHeight: 100,
         type: 'multipleLine'
     },
     {
@@ -296,7 +302,8 @@ const chartObjectsList = [
         title: 'Movilidad',
         xTitle: 'País',
         yTitle: 'Cantidad de alumnos',
-        type: 'bar'
+        type: 'bar',
+        rotate: 75
     },
     {
         bindto: `#chart${chartNumber++}`, 
@@ -314,11 +321,14 @@ const chartObjectsList = [
     },
     {   
         bindto: `#chart${chartNumber++}`, 
-        columns: [
-            ['Programas de servicio social', 816],
-            ['Ganadores del premio al servicio social', 58]
-        ],
-        colors: ['#1f77b4', '#ff7f0e'],
+        data: {
+            columns: [
+                ['Programas de servicio social', 816],
+                ['Ganadores del premio al servicio social', 58]
+            ],
+        },
+        title: 'Servicio Social',
+        colors: colorPallette,
         type: 'donut',
     },
     {
@@ -330,6 +340,18 @@ const chartObjectsList = [
             ],
             type: 'bar'
         },
+        // data: {
+        //     columns: [
+        //         ['Comunidad atendida', 23630],
+        //         ['Cursos realizados', 1097]
+        //     ],
+        //     types: {
+        //         data1: 'area-spline',
+        //         data2: 'area-spline'
+        //         // 'line', 'spline', 'step', 'area', 'area-step' are also available to stack
+        //     },
+        //     groups: [['Comunidad atendida', 'Cursos realizados']]
+        // },
         title: 'Educación continua',
         xTitle: '',
         yTitle: '',
@@ -360,6 +382,7 @@ const chartObjectsList = [
             ],
             type : 'pie',
         },
+        colors: colorPallette,
         title: 'Personal académico 2024',
         type: 'pie'
     },
@@ -368,16 +391,16 @@ const chartObjectsList = [
         data:  {
             // iris data from R
             columns: [
-                ["Doctorado", 210],
-                ["Maestría", 526],
+                ["Doctorado", 230],
+                ["Maestría", 554],
                 ["Especialidad", 38],
-                ["Licenciatura", 915],
+                ["Licenciatura", 867],
                 ["Técnico", 7],
                 ["Pasante de licenciatura", 140],
             ],
             type : 'pie',
         },
-        // colors: []
+        colors: colorPallette,
         title: 'Grado académico de la comunidad docente',
         type: 'pie'
     },
@@ -390,23 +413,18 @@ const chartObjectsList = [
                 ['PEDPACMeT', 3],
                 ['PEE', 23],
                 ['PEI', 1]
+            
+                // ['Programa de Estímulos a la Productividad y al Rendimiento del Personal Académico de Asignatura', 1367],
+                // ['Programa de Estímulos al Desempeño del Personal Académico de Tiempo Completo', 98],
+                // ['Programa de Estímulos al Desempeño de Personal Académico de Carrera de Medio Tiempo para el Fortalecimiento de la Docencia', 3],
+                // ['Programa de Estímulos por Equivalencia', 23],
+                // ['Programa de Estímulos de Iniciación de la Carrera Académica para Personal de Tiempo Completo', 1]
             ],
-            type: 'bar',
-            groups: [
-                ['PEPASIG', 'PRIDE', 'PEDPACMeT', 'PEE', 'PEI']
-            ],
-            colors: {
-                PEPASIG: '#1f77b4',
-                PRIDE: '#ff7f0e',
-                PEDPACMeT: '#2ca02c',
-                PEE: '#d62728',
-                PEI: '#9467bd'
-            },
+            
         },
-        title: 'Estimulos',
-        xTitle: 'Estimulos',
-        yTitle: 'Valor',
-        type: 'bar'
+        colors: colorPallette,
+        title: 'Estímulos',
+        type: 'donut'
     },
     {
         bindto: `#chart${chartNumber++}`,
@@ -419,62 +437,43 @@ const chartObjectsList = [
             ],
             type : 'pie',
         },
-        // color: [],
+        colors: colorPallette,
         title: 'Personal administrativo y de base',
         type:'pie'  
     },
     {
         bindto: `#chart${chartNumber++}`,
+        // data: {
+        //     xs: {
+        //         'Profesores de Carrera': 'x1',
+        //         'Técnicos Académicos': 'x2',
+        //     },
+        //     columns: [
+        //         ['x1', '2010','2011','2012','2013','2014','2015','2016','2017','2018','2019','2020','2021','2022','2023','2024'],
+        //         ['x2', '2010','2011','2012','2013','2014','2015','2016','2017','2018','2019','2020','2021','2022','2023','2024'],
+        //         ['Profesores de Carrera', 66,65,66,68,67,67,65,66,66,73,73,76,74,79,86],
+        //         ['Técnicos Académicos', 46,45,45,45,45,45,46,49,48,47,46,44,44,44,45],
+        //     ],
+        // },
+
         data: {
-            xs: {
-                'Profesores de Carrera': 'x1',
-                'Técnicos Académicos': 'x2',
-            },
+            x: 'x', 
             columns: [
-                ['x1', '2010','2011','2012','2013','2014','2015','2016','2017','2018','2019','2020','2021','2022','2023','2024'],
-                ['x2', '2010','2011','2012','2013','2014','2015','2016','2017','2018','2019','2020','2021','2022','2023','2024'],
+                ['x', '2010','2011','2012','2013','2014','2015','2016','2017','2018','2019','2020','2021','2022','2023','2024'],
                 ['Profesores de Carrera', 66,65,66,68,67,67,65,66,66,73,73,76,74,79,86],
                 ['Técnicos Académicos', 46,45,45,45,45,45,46,49,48,47,46,44,44,44,45],
             ],
-        },
-        title: 'Histórico de Profesores de Carrera y Técnicos Académicos de la FES Aragón',
-        xTitle: 'Año',
-        yTitle: 'Profesor',
-        type: 'multipleLine'
-    },
-    {
-        bindto: `#chart${chartNumber++}`,
-        data: {
-            x : 'x',
-            columns: [
-                ['x', 'Ciencias y Desarrollo tecnológico', 'PAPIME', 'Humanidades y ciencias sociales', 'Convenios en investigación', 'PAPIIT', 'Proyectos de posdoctorantes'],
-                ['Proyectos', 22, 17, 21, 4, 7, 10],
-            ],
-            type: 'bar'
-        },
-        title: 'Proyectos de investigación 2024',
-        xTitle: '',
-        yTitle: '',
-        type: 'bar'
-    },
-    {
-        bindto: `#chart${chartNumber++}`,
-        data: {
-            xs: {
-                'PAPIME': 'x1',
-                'PAPIIT': 'x2',
+            types: {
+                'Profesores de Carrera': 'area-spline',
+                'Técnicos Académicos': 'area-spline'
             },
-            columns: [
-                ['x1', 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2024],
-                ['x2', 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2024],
-                ['PAPIME', 9, 7, 9, 19, 26, 16, 12, 18, 17],
-                ['PAPIIT', 6, 6, 7, 8, 14, 16, 11, 6, 7]
-            ],
+            groups: [['Profesores de Carrera', 'Técnicos Académicos']] 
         },
+        colors: colorPallette,
         title: 'Histórico de Profesores de Carrera y Técnicos Académicos de la FES Aragón',
         xTitle: 'Año',
         yTitle: 'Profesor',
-        type: 'multipleLine'
+        type: 'stackedArea'
     },
     {
         bindto: `#chart${chartNumber++}`,
@@ -514,7 +513,7 @@ const chartObjectsList = [
         data: { 
             columns: [
                 ['x', 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024],
-                ['SNI', 27, 26, 28, 35, 30, 42, 55, 55]
+                ['SNI', 27, 26, 28, 35, 30, 42, 53, 55]
             ],
         },
         title: 'Total de docentes adscritos al Sistema Nacional de Investigación (SNI)', 
@@ -556,30 +555,38 @@ const chartObjectsList = [
     },
     {
         bindto: `#chart${chartNumber++}`,
-        columns: [
-            ["Total de cursos", 400],
-            ["Total de inscripciones registradas", 11213],
-        ],
+        data: {
+            columns: [
+                ["Total de cursos", 400],
+                ["Total de inscripciones registradas", 11213],
+            ],
+        },
         title: 'Programa de actualización y superación docente (PASD) 2017-2024',
-        // colors: [],
+        colors: colorPallette,
         type: 'donut'
     },
     {
         bindto: `#chart${chartNumber++}`,
-        columns: [
-            ["Personas inscritas", 8961],
-            ["Actividades ofertadas", 52],
-        ],
+        data:{
+            columns: [
+                ["Personas inscritas", 8961],
+                ["Actividades ofertadas", 52],
+            ],
+        },
+        colors: colorPallette,
         title: 'Actividades deportivas',
         type: 'donut'
     },
     {
         bindto: `#chart${chartNumber++}`,
-        columns: [
-            ["Títulos", 66313],
-            ["Ejemplares", 336607],
-            ["Libros digitales", 68847],
-        ],
+        data:{
+            columns: [
+                ["Títulos", 66313],
+                ["Ejemplares", 336607],
+                ["Libros digitales", 68847],
+            ],
+        },
+        colors: colorPallette,
         title: 'Biblioteca',
         type: 'donut'
     }
@@ -620,6 +627,7 @@ function createLineChart(chartObject,wrapperID){
         },
         legend: {
             show: true,
+            padding: legendPadding
         },
         size: {
             height: chartHeight,
@@ -663,6 +671,7 @@ function createMultipleLineChart(chartObject,wrapperID){
         },
         legend: {
             show: true,
+            padding: legendPadding
         },
         size: {
             height: chartHeight,
@@ -683,10 +692,10 @@ function createMultipleLineChart(chartObject,wrapperID){
             x: {
                 type: 'category',
                 tick: {
-                    rotate: 0, // Rotar etiquetas para mejor visibilidad
-                    multiline: false
+                    rotate: chartObject.rotate, // Rotar etiquetas para mejor visibilidad
+                    multiline: true
                 },
-                height: 70 // Ajuste de altura para espacio de las etiquetas rotadas
+                height: chartObject.legendHeight != 0 ? chartObject.legendHeight : 70 // Ajuste de altura para espacio de las etiquetas rotadas
             },
             y: {
                 tick: {
@@ -723,12 +732,16 @@ function createBarChart(chartObject,wrapperID){
             position: 'top-center'
 
         },
+        legend: {
+            show: true,
+            padding: legendPadding
+        },
         axis: {
             x: {
                 type: 'category',
                 categories: chartObject.categories,
                 tick: {
-                    rotate: 0,
+                    rotate: chartObject.rotate,
                     multiline: false
                 },
                 label: {
@@ -765,13 +778,20 @@ function createDonutChart(chartObject,wrapperID){
         bindto: chartObject.bindto+"-"+wrapperID,
         
         data: {
-            columns: chartObject.columns,
+            columns: chartObject.data.columns,
             type: 'donut'
         },
         donut: {
             label: {
-                show: true
+                show: true,
+                format: function(value, ratio, id) {
+                    return value; // Muestra el valor en lugar del porcentaje
                 }
+            }
+        },
+        legend: {
+            show: true,
+            padding: legendPadding
         },
         color: {
             pattern: chartObject.colors
@@ -788,17 +808,53 @@ function createPieChart(chartObject,wrapperID){
         data: chartObject.data,
         pie: {
             label: {
-                show: true
+                show: true,
+                format: function(value, ratio, id) {
+                    return value; // Muestra el valor en lugar del porcentaje
+                }
             }
+        },
+        legend: {
+            show: true,
+            padding: legendPadding
         },
         color: {
             pattern: chartObject.colors
         },
         title: {
-            text: 'Personal académico 2024'
+            text: chartObject.title
         }
     });
 }
+
+function createStackedAreaChart(chartObject, wrapperID){
+    c3.generate({
+        bindto: chartObject.bindto+"-"+wrapperID,
+        data: chartObject.data,
+        axis: {
+            x: {
+                type: 'category' 
+            }
+        },
+        padding: {
+            top: 20,
+            right: 50,
+            bottom: 0,
+            left: 60
+        },
+        legend: {
+            show: true,
+            padding: legendPadding
+        },
+        color: {
+            pattern: chartObject.colors
+        },
+        title: {
+            text: chartObject.title
+        }
+    });
+}
+
 
 
 
@@ -824,6 +880,9 @@ function generateCharts(indexChartList, wrapperID){
                 break;
             case 'pie':
                 createPieChart(g, wrapperID);
+                break;
+            case 'stackedArea':
+                createStackedAreaChart(g, wrapperID);
                 break;
             default:
                 console.log(`[${g.bindto} - ${type}] no se puede construir, no hay función para ello.`)
