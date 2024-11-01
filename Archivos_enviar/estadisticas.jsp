@@ -22,20 +22,30 @@
 
 	    <style>
 
+			/* Importamos fuente Poppins */
 			@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
-        
+			
+			/* Normalizar estilos */
 			*{
                 box-sizing: border-box;
                 padding: 0;
                 margin: 0;
-				/* font-family: "Poppins", sans-serif; */
+				font-family: "Poppins", sans-serif;
             }
 
+			/* Contenedor de cada grafico */
 	        .chart-container {
 	        	margin: 1rem;
 	        }
 
+			/* Hacer que el texto de los titulos sea seleccionable */
+			.c3 text {
+				-webkit-user-select: auto;
+				-moz-user-select: auto;
+				user-select: auto;
+			}
 
+			/* Moficamos los estilos del texto de los titulos de cada grafica */
 			.c3-title {
 				font-family: "Poppins", sans-serif;
 				font-size: 24px; 
@@ -44,7 +54,8 @@
 			}
 
 
-            .card-header{
+			/* Estilos de cada sección (acordeón) */
+            .accordion-header{
                 background-color: #4CAF50; 
                 /* padding-top: 1.25rem 0;  */
                 border-radius: 0.625rem; 
@@ -58,20 +69,21 @@
                 margin-top: 1rem;
             }
 
-            .card-header:last-of-type{
+			/* Añadimos un pequeño espacio al final */
+            .accordion-header:last-of-type{
 				margin-bottom: 3rem;
 			}
 
-            .card-title{
+			/* Estilos de titulo de acordeón */
+            .accordion-title{
                 padding: 0.5rem 0;
                 font-size: 2rem;
 				width: 100%;
 				height: 100%;
-				text-align: center;
-                /* font-family: ; */
-				
+				text-align: center;	
             }
 
+			/* Estilos de agrupación de gráficas */
             .chart-wrapper{
                 background-color: #fff;
                 color: #3f3f3f;
@@ -79,9 +91,9 @@
                 width: 100%;
             }
 
-			/* Agregar separación a última tarjeta */
-			.card-header:last-of-type{
-				margin-bottom: 3rem;
+			/* Oculta agrupación */
+			.empty{
+				display: none;
 			}
 
 	    </style>
@@ -119,46 +131,43 @@
 	            		String nombre = p.getNombreFromCar(carrera);
 	        %>
 
-					<div class="card-header"  style="background: linear-gradient(45deg, #000000, #434343);">
-						<div class="card-title" onclick="showAll()">Estadísticas</div>
-						<div class="chart-wrapper" id="estadistica">
-						</div>
-					</div>
 					
-					<div class="card-header" style="background: linear-gradient(to right, #32cd32, #228b22);">
-						<div class="card-title" onclick="showAlumnos()">Alumnos</div>
-						<div class="chart-wrapper" id="alumnos"></div>
-					</div>
-					
-					<div class="card-header" style="background: linear-gradient(to right, #ff4500, #ff6347);">
-						<div class="card-title" onclick="showDocentes()">Docentes</div>
-						<div class="chart-wrapper" id="docentes"></div>
-					</div>
-					
-					<div class="card-header" style="background: linear-gradient(to right, #ffd700, #ffc107);">
-						<div class="card-title" onclick="showDuacyd()">DUACyD</div>
+					<div class="accordion-header" style="background: #013A63;">
+						<div class="accordion-title" onclick="showDuacyd()">DUACyD</div>
 						<div class="chart-wrapper" id="duacyd"></div>
 					</div>
 					
-					<div class="card-header" style="background: linear-gradient(to right, #1e90ff, #00bfff);">
-						<div class="card-title" onclick="showPersonal()">Personal</div>
+					<div class="accordion-header" style="background: #01497C;">
+						<div class="accordion-title" onclick="showDocentes()">Docentes</div>
+						<div class="chart-wrapper" id="docentes"></div>
+					</div>
+
+					<div class="accordion-header" style="background: #014F86;">
+						<div class="accordion-title" onclick="showAlumnos()">Alumnos</div>
+						<div class="chart-wrapper" id="alumnos"></div>
+					</div>
+
+
+					<div class="accordion-header" style="background: #2A6F97;">
+						<div class="accordion-title" onclick="showPersonal()">Personal</div>
 						<div class="chart-wrapper" id="personal"></div>
 					</div>
-					
-					<div class="card-header" style="background: linear-gradient(to right, #ffa500, #ff8c00);">
-						<div class="card-title" onclick="showUEU()">Unidad de Educación Universitaria</div>
-						<div class="chart-wrapper" id="ueu"></div>
-					</div>
-					
-					<div class="card-header" style="background: linear-gradient(to right, #800080, #9932cc);">
-						<div class="card-title" onclick="showInvestigacion()">Investigación</div>
+
+					<div class="accordion-header" style="background: #2C7DA0;">
+						<div class="accordion-title" onclick="showInvestigacion()">Investigación</div>
 						<div class="chart-wrapper" id="investigacion"></div>
 					</div>
 					
-					<div class="card-header" style="background: linear-gradient(to right, #ff1493, #ff69b4);">
-						<div class="card-title" onclick="showServicios()">Servicios</div>
+					<div class="accordion-header" style="background: #468FAF;">
+						<div class="accordion-title" onclick="showUEU()">Unidad de Educación Universitaria</div>
+						<div class="chart-wrapper" id="ueu"></div>
+					</div>
+					
+					<div class="accordion-header" style="background: #61A5C2;">
+						<div class="accordion-title" onclick="showServicios()">Servicios</div>
 						<div class="chart-wrapper" id="servicios"></div>
 					</div>
+
             
 
 	   		<%
