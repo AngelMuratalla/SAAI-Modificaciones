@@ -123,7 +123,7 @@ const chartObjectsList = [
                 ['Mujeres', 709, 349, 1155, 264, 268, 90, 239, 100, 1030, 2933, 389, 164, 791, 238, 703, 213, 355]
             ],
         },
-        title: 'Matrícula estudiantil de licenciaura - FES Aragón Semestre 2025-I',
+        title: 'Matrícula estudiantil de licenciatura - FES Aragón Semestre 2025-I',
         yTitle: 'Alumnos',
         type: 'multipleLine'
         
@@ -149,7 +149,7 @@ const chartObjectsList = [
         title: 'Matrícula estudiantil de posgrado - FES Aragón Semestre 2025-I',
         yTitle: 'Alumnos',
         rotate: 75,
-        legendHeight: 100,
+        legendHeight: 150,
         type: 'multipleLine'
     },
     {
@@ -197,7 +197,7 @@ const chartObjectsList = [
         bindto: `#chart${chartNumber++}`, 
         data: {
             columns: [
-                ['Cantidad', 450, 450, 74, 73, 61, 61, 50, 15, 14, 13, 13, 11, 7, 7, 6, 5, 4, 3, 3, 3, 3, 3, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+                ['Cantidad', 246, 450, 74, 73, 61, 61, 50, 15, 14, 13, 13, 11, 7, 7, 6, 5, 4, 11, 3, 3, 3, 3, 3, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1],
             ],
             type: 'bar',
             labels: true,
@@ -284,8 +284,11 @@ const chartObjectsList = [
         bindto: `#chart${chartNumber++}`,
         data: {
             columns: [
-                ["Carreta TC y MT", 86],
-                ["Técnicos", 46],
+                ["Técnicos de tiempo completo", 46],
+                ["Titulares de tiempo completo", 45],
+                ["Titulares medio de tiempo", 1],
+                ["Asociados de tiempo completo", 34],
+                ["Asociados de medio tiempo", 6],
                 ["Asignatura", 1600],
                 ["Ayudantes", 104],
             ],
@@ -376,7 +379,7 @@ const chartObjectsList = [
             x : 'x',
             columns: [
                 ['x', 'Ciencias y Desarrollo tecnológico', 'PAPIME', 'Humanidades y ciencias sociales', 'Convenios en investigación', 'PAPIIT', 'Proyectos de posdoctorantes'],
-                ['Proyectos', 22, 17, 21, 4, 7, 10],
+                ['Proyectos', 67, 64, 21, 15, 34, 14],
             ],
             type: 'bar'
         },
@@ -393,10 +396,10 @@ const chartObjectsList = [
                 'PAPIIT': 'x2',
             },
             columns: [
-                    ['x1', 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2024],
-                    ['x2', 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2024],
-                    ['PAPIME', 9, 7, 9, 19, 26, 16, 12, 18, 17],
-                    ['PAPIIT', 6, 6, 7, 8, 14, 16, 11, 6, 7]
+                    ['x1', '2016-2017', '2017-2018', '2018-2019', '2019-2020', '2020-2021', '2021-2022', '2022-2023', '2023-2024'],
+                    ['x2', '2016-2017', '2017-2018', '2018-2019', '2019-2020', '2020-2021', '2021-2022', '2022-2023', '2023-2024'],
+                    ['PAPIME', 9, 7, 9, 19, 26, 16, 12, 17],
+                    ['PAPIIT', 6, 6, 7, 8, 14, 16, 11, 7]
             ],
         },
         title: 'Proyectos de investigación desarrollados con financiamiento institucional', 
@@ -706,6 +709,7 @@ function createPieChart(chartObject,wrapperID){
                 show: true,
                 format: function(value, ratio, id) {
                     return value; // Muestra el valor en lugar del porcentaje
+                    
                 }
             }
         },
