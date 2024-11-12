@@ -1,3 +1,5 @@
+// TODO: Agregar cursor pointer al titulo del acordeon
+
 /* --------------------------------FUNCIONES DE LLENADO---------------------------------------- */
 
 /* 
@@ -80,7 +82,20 @@ function showServicios() {
 const chartHeight = 500;
 const chartWidth = 0;
 const legendPadding = 15;
-const colorPallette = ['#2E86C1', '#F39C12', '#28B463', '#8E44AD', '#E74C3C', '#1ABC9C', '#F1C40F', '#D35400', '#5D6D7E', '#C0392B'];
+const colorPallette = [
+    '#154360', // Azul marino oscuro
+    '#8E44AD', // Púrpura oscuro
+    '#273746', // Gris carbón oscuro
+    '#7D3C98', // Vino oscuro
+    '#1F618D', // Azul profundo
+    '#512E5F', // Lila oscuro
+    '#A93226', // Rojo vino oscuro
+    '#6C7A92', // Gris azulado oscuro
+    '#D35400', // Naranja oscuro
+    '#5D6D7E'  // Gris oscuro
+];
+
+
 
 
 /* Cada elemento de la lista (chartObjet) debe tener dentro de si los siguientes datos
@@ -100,8 +115,8 @@ const chartObjectsList = [
         bindto: `#chart${chartNumber++}`,
         data : {
             columns: [
-                ['x', '2019-01', '2019-02', '2020-01', '2020-02', '2021-01', '2021-02', '2022-01', '2022-02', '2023-01', '2023-02', '2024-01', '2024-02'],
-                ['Matricula', 18452, 20035, 18860, 21064, 19634, 21245, 20125, 23796, 19863, 20843, 19536],
+                ['x', '2019-01', '2019-02', '2020-01', '2020-02', '2021-01', '2021-02', '2022-01', '2022-02', '2023-01', '2023-02', '2024-01', '2024-02', '2025-01'],
+                ['Matricula', 18452, 20035, 18860, 21064, 19634, 21245, 20125, 23796, 19863, 20843, 19536, 20036, 20601],
             ],
         } ,
         title: 'Matrícula FES Aragón 2019-2025',
@@ -416,6 +431,7 @@ const chartObjectsList = [
         },
         title: 'Total de docentes adscritos al Sistema Nacional de Investigación (SNI)', 
         yTitle: 'Docentes',
+        xTitle: 'SNI',
         type: 'line'  
     },
     {
@@ -501,7 +517,7 @@ function createLineChart(chartObject,wrapperID){
             columns: chartObject.data.columns,
             type: 'line',
             colors : {
-                // [chartObject.xTitle]: '#202c56'  
+                [chartObject.xTitle]: '#202c56'  
             }
         },
         axis: {
@@ -560,12 +576,23 @@ function createLineChart(chartObject,wrapperID){
     })
 }
 
-function createMultipleLineChart(chartObject,wrapperID){
+function createMultipleLineChart(chartObject, wrapperID) {
+    // Colores predeterminados (puedes ajustar la lista de colores)
+    const defaultColors = ['#cdc04e', '#202c56', '#ff6b6b', '#4caf50', '#ffb74d'];
+
+    // Genera los colores basados en las series de datos en chartObject.data.xs
+    const colors = {};
+    Object.keys(chartObject.data.xs).forEach((key, index) => {
+        colors[key] = defaultColors[index % defaultColors.length];
+    });
+
+    // Genera el gráfico con los colores asignados dinámicamente
     c3.generate({
-        bindto: chartObject.bindto+"-"+wrapperID,
+        bindto: chartObject.bindto + "-" + wrapperID,
         data: {
             xs: chartObject.data.xs,
             columns: chartObject.data.columns,
+            colors: colors
         },
         legend: {
             show: true,
@@ -584,16 +611,15 @@ function createMultipleLineChart(chartObject,wrapperID){
         title: {
             text: chartObject.title,
             position: 'top-center'
-
         },
         axis: {
             x: {
                 type: 'category',
                 tick: {
-                    rotate: chartObject.rotate, // Rotar etiquetas para mejor visibilidad
+                    rotate: chartObject.rotate,
                     multiline: true
                 },
-                height: chartObject.legendHeight != 0 ? chartObject.legendHeight : 70 // Ajuste de altura para espacio de las etiquetas rotadas
+                height: chartObject.legendHeight != 0 ? chartObject.legendHeight : 70
             },
             y: {
                 tick: {
@@ -601,20 +627,21 @@ function createMultipleLineChart(chartObject,wrapperID){
                 },
                 label: {
                     text: chartObject.yTitle,
-                    position: 'outer-middle' 
+                    position: 'outer-middle'
                 }
             }
         },
         point: {
-            r: 5, // Tamaño de los puntos en la línea
+            r: 5,
             focus: {
                 expand: {
-                    r: 7  // Aumenta el tamaño al pasar el mouse
+                    r: 7
                 }
-            },
+            }
         }
-    });  
+    });
 }
+
 
 function createBarChart(chartObject,wrapperID){
     c3.generate({
@@ -634,6 +661,9 @@ function createBarChart(chartObject,wrapperID){
             show: true,
             padding: legendPadding
         },
+        color: {
+            pattern: ['#202c56', '#cdc04e', '#ff6b6b', '#4caf50', '#ffb74d'] 
+        },
         axis: {
             x: {
                 type: 'category',
@@ -648,6 +678,9 @@ function createBarChart(chartObject,wrapperID){
                 }
             },
             y: {
+                tick: {
+                    format: d3.format(",") // Añade comas cada tres dígitos
+                },
                 label: {
                     text: chartObject.yTitle,
                     position: 'outer-middle'
@@ -683,7 +716,7 @@ function createDonutChart(chartObject,wrapperID){
             label: {
                 show: true,
                 format: function(value, ratio, id) {
-                    return value; // Muestra el valor en lugar del porcentaje
+                    return d3.format(",")(value); // Muestra el valor en lugar del porcentaje
                 }
             }
         },
@@ -692,7 +725,7 @@ function createDonutChart(chartObject,wrapperID){
             padding: legendPadding
         },
         color: {
-            pattern: chartObject.colors
+            pattern: colorPallette
         },
         title: {
             text: chartObject.title
@@ -708,7 +741,7 @@ function createPieChart(chartObject,wrapperID){
             label: {
                 show: true,
                 format: function(value, ratio, id) {
-                    return value; // Muestra el valor en lugar del porcentaje
+                    return d3.format(",")(value); // Muestra el valor en lugar del porcentaje
                     
                 }
             }
@@ -718,7 +751,7 @@ function createPieChart(chartObject,wrapperID){
             padding: legendPadding
         },
         color: {
-            pattern: chartObject.colors
+            pattern: colorPallette
         },
         title: {
             text: chartObject.title
@@ -733,6 +766,11 @@ function createStackedAreaChart(chartObject, wrapperID){
         axis: {
             x: {
                 type: 'category' 
+            },
+            y: {
+                tick: {
+                    format: d3.format(",")  // Añade comas cada tres dígitos
+                }
             }
         },
         padding: {
@@ -746,12 +784,13 @@ function createStackedAreaChart(chartObject, wrapperID){
             padding: legendPadding
         },
         color: {
-            pattern: chartObject.colors
+            pattern: ['#cdc04e', '#202c56', '#ff6b6b', '#4caf50', '#ffb74d'] 
         },
         title: {
             text: chartObject.title
         }
     });
+
 }
 
 //Genera los graficos indicados dentro de la lista de indices 

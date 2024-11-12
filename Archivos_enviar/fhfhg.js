@@ -100,8 +100,8 @@ const chartObjectsList = [
         bindto: `#chart${chartNumber++}`,
         data : {
             columns: [
-                ['x', '2019-01', '2019-02', '2020-01', '2020-02', '2021-01', '2021-02', '2022-01', '2022-02', '2023-01', '2023-02', '2024-01', '2024-02'],
-                ['Matricula', 18452, 20035, 18860, 21064, 19634, 21245, 20125, 23796, 19863, 20843, 19536],
+                ['x', '2019-01', '2019-02', '2020-01', '2020-02', '2021-01', '2021-02', '2022-01', '2022-02', '2023-01', '2023-02', '2024-01', '2024-02', '2025-01'],
+                ['Matricula', 18452, 20035, 18860, 21064, 19634, 21245, 20125, 23796, 19863, 20843, 19536, 20601],
             ],
         } ,
         title: 'Matrícula FES Aragón 2019-2025',
@@ -648,6 +648,9 @@ function createBarChart(chartObject,wrapperID){
                 }
             },
             y: {
+                tick: {
+                    format: d3.format(",") // Añade comas cada tres dígitos
+                },
                 label: {
                     text: chartObject.yTitle,
                     position: 'outer-middle'
@@ -683,7 +686,7 @@ function createDonutChart(chartObject,wrapperID){
             label: {
                 show: true,
                 format: function(value, ratio, id) {
-                    return value; // Muestra el valor en lugar del porcentaje
+                    return d3.format(",")(value); // Muestra el valor en lugar del porcentaje
                 }
             }
         },
@@ -708,7 +711,7 @@ function createPieChart(chartObject,wrapperID){
             label: {
                 show: true,
                 format: function(value, ratio, id) {
-                    return value; // Muestra el valor en lugar del porcentaje
+                    return d3.format(",")(value); // Muestra el valor en lugar del porcentaje
                     
                 }
             }
@@ -733,6 +736,11 @@ function createStackedAreaChart(chartObject, wrapperID){
         axis: {
             x: {
                 type: 'category' 
+            },
+            y: {
+                tick: {
+                    format: d3.format(",")  // Añade comas cada tres dígitos
+                }
             }
         },
         padding: {
