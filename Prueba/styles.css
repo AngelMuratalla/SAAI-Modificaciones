@@ -1,0 +1,121 @@
+/* Importamos fuente Poppins */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+:root{
+    --background: #fff;
+    --text-color: #282828; 
+    /* --text-color: #fff;  */
+}
+
+/* Normalizar estilos */
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+}
+
+.body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--background);
+
+    font-size: 16px;
+
+    width: 100vw;
+    height: 100vh;
+}
+
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 5em; /* 80px -> 5em */
+}
+
+.card{
+    position: relative;
+    width: 18.75em; /* 300px -> 18.75em */
+    height: 21.875em; /* 350px -> 21.875em */
+    border-radius: 1.25em; /* 20px -> 1.25em */
+    border-top-left-radius: 4.375em; /* 70px -> 4.375em */
+    overflow: hidden;
+    background-color: var(--clr);
+}
+
+.box{
+    position: absolute;
+    inset: 0.625em; /* 10px -> 0.625em */
+    background-color: var(--background);
+}
+
+.icon{
+    position: absolute;
+    width: 8.75em; /* 140px -> 8.75em */
+    height: 8.75em; /* 140px -> 8.75em */
+    border-bottom-right-radius: 50%;
+    transition: 0.5s;
+    background-color: var(--clr);
+}
+
+.icon::before{
+    content: '';
+    position: absolute;
+    bottom: -1.875em; /* 30px -> 1.875em */
+    left: 0;
+    width: 1.875em; /* 30px -> 1.875em */
+    height: 1.875em; /* 30px -> 1.875em */
+    background: transparent;
+    border-top-left-radius: 1.875em; /* 30px -> 1.875em */
+    box-shadow: -0.3125em -0.3125em 0 0.3125em var(--clr); /* -5px -5px 0 5px -> -0.3125em -0.3125em 0 0.3125em */
+}
+
+.icon::after{
+    content: '';
+    position: absolute;
+    right: -1.875em; /* 30px -> 1.875em */
+    top: 0;
+    width: 1.875em; /* 30px -> 1.875em */
+    height: 1.875em; /* 30px -> 1.875em */
+    background: transparent;
+    border-top-left-radius: 1.875em; /* 30px -> 1.875em */
+    box-shadow: -0.3125em -0.3125em 0 0.3125em var(--clr); /* -5px -5px 0 5px -> -0.3125em -0.3125em 0 0.3125em */
+}
+
+.iconBox{
+    position: absolute;
+    inset: 0.625em; /* 10px -> 0.625em */
+    background-color: var(--background);
+    border-radius: 50%;
+    border-top-right-radius: 0.625em; /* 10px -> 0.625em */
+    border-bottom-left-radius: 0.625em; /* 10px -> 0.625em */
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+}
+
+.iconBox ion-icon{
+    font-size: 4em;
+    color: var(--text-color);
+    --ionicon-stroke-width: 20px;
+}
+
+.content{
+    position: absolute;
+    top: 8.125em; /* 130px -> 8.125em */
+    padding: 1.25em; /* 20px -> 1.25em */
+    text-align: center;
+    width: 100%;
+}
+
+.content h3, .content p{
+    color: var(--text-color);
+}
+
+.content h3{
+    font-size: 2.5em; /* 40px -> 2.5em */
+}
