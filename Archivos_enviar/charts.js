@@ -1,3 +1,4 @@
+
 /* --------------------------------FUNCIONES DE LLENADO---------------------------------------- */
 
 /* 
@@ -80,7 +81,20 @@ function showServicios() {
 const chartHeight = 500;
 const chartWidth = 0;
 const legendPadding = 15;
-const colorPallette = ['#2E86C1', '#F39C12', '#28B463', '#8E44AD', '#E74C3C', '#1ABC9C', '#F1C40F', '#D35400', '#5D6D7E', '#C0392B'];
+const colorPallette = [
+    '#154360', // Azul marino oscuro
+    '#8E44AD', // Púrpura oscuro
+    '#273746', // Gris carbón oscuro
+    '#7D3C98', // Vino oscuro
+    '#1F618D', // Azul profundo
+    '#512E5F', // Lila oscuro
+    '#A93226', // Rojo vino oscuro
+    '#6C7A92', // Gris azulado oscuro
+    '#D35400', // Naranja oscuro
+    '#5D6D7E'  // Gris oscuro
+];
+
+
 
 
 /* Cada elemento de la lista (chartObjet) debe tener dentro de si los siguientes datos
@@ -101,7 +115,7 @@ const chartObjectsList = [
         data : {
             columns: [
                 ['x', '2019-01', '2019-02', '2020-01', '2020-02', '2021-01', '2021-02', '2022-01', '2022-02', '2023-01', '2023-02', '2024-01', '2024-02', '2025-01'],
-                ['Matricula', 18452, 20035, 18860, 21064, 19634, 21245, 20125, 23796, 19863, 20843, 19536, 20601],
+                ['Matricula', 18452, 20035, 18860, 21064, 19634, 21245, 20125, 23796, 19863, 20843, 19536, 20036, 20601],
             ],
         } ,
         title: 'Matrícula FES Aragón 2019-2025',
@@ -148,7 +162,7 @@ const chartObjectsList = [
         },
         title: 'Matrícula estudiantil de posgrado - FES Aragón Semestre 2025-I',
         yTitle: 'Alumnos',
-        rotate: 75,
+        rotate: -45,
         legendHeight: 150,
         type: 'multipleLine'
     },
@@ -224,7 +238,7 @@ const chartObjectsList = [
         xTitle: 'País',
         yTitle: 'Cantidad de alumnos',
         type: 'bar',
-        rotate: 75
+        rotate: -45
     },
     {
         bindto: `#chart${chartNumber++}`, 
@@ -242,43 +256,117 @@ const chartObjectsList = [
     },
     {   
         bindto: `#chart${chartNumber++}`, 
-        data: {
-            columns: [
-                ['Programas de servicio social', 816],
-                ['Ganadores del premio al servicio social', 58]
-            ],
-        },
+        code: `
+        <div class="body">
+            <div class="container-info">
+                <div class="card-info" style="--clr:#202c56;">
+                    <div class="box" >
+                        <div class="icon">
+                            <div class="iconBox"><ion-icon name="body"></ion-icon></div>
+                        </div>
+                        <div class="content">
+                            <h3>6,418</h3>
+                            <p>Alumnos que concluyeron su servico</p>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="card-info" style="--clr:#C6BFC9;">
+                    <div class="box" >
+                        <div class="icon">
+                            <div class="iconBox"><ion-icon name="extension-puzzle"></ion-icon></div>
+                        </div>
+                        <div class="content">
+                            <h3>816</h3>
+                            <p>Programas ofertados</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-info" style="--clr:#cdc04e;">
+                    <div class="box" >
+                        <div class="icon">
+                            <div class="iconBox"><ion-icon name="trophy"></ion-icon></div>
+                        </div>
+                        <div class="content">
+                            <h3>58</h3>
+                            <p>Ganadores del premio al servicio social</p>
+                        </div>
+                    </div>
+                </div>
+    
+            </div>
+        </div>`,
         title: 'Servicio Social',
-        colors: colorPallette,
-        type: 'donut',
+        type: 'HTML',
     },
     {
         bindto: `#chart${chartNumber++}`, 
-        data: {
-            columns: [
-                ['Comunidad atendida', 23630],
-                ['Cursos realizados', 1097]
-            ],
-            type: 'bar'
-        },
+        code: `
+        <div class="body">
+            <div class="container-info">
+                <div class="card-info" style="--clr:#202c56;">
+                    <div class="box" >
+                        <div class="icon">
+                            <div class="iconBox"><ion-icon name="body"></ion-icon></div>
+                        </div>
+                        <div class="content">
+                            <h3>23,630</h3>
+                            <p>Comunidad Atendida</p>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="card-info" style="--clr:#cdc04e;">
+                    <div class="box" >
+                        <div class="icon">
+                            <div class="iconBox"><ion-icon name="school"></ion-icon></div>
+                        </div>
+                        <div class="content">
+                            <h3>1,097</h3>
+                            <p>Cursos realizados</p>
+                        </div>
+                    </div>
+                </div>
+    
+            </div>
+        </div>`,
         title: 'Educación continua',
-        xTitle: '',
-        yTitle: '',
-        type: 'bar'
+        type: 'HTML'
     },
     {
         bindto: `#chart${chartNumber++}`,
-        data: {
-            columns: [
-                ['Estudiantes inscritos', 45927],
-                ['Número de cursos', 1745]
-            ],
-            type: 'bar'
-        },
+        code: `
+        <div class="body">
+            <div class="container-info">
+                <div class="card-info" style="--clr:#202c56;">
+                    <div class="box" >
+                        <div class="icon">
+                            <div class="iconBox"><ion-icon name="body"></ion-icon></div>
+                        </div>
+                        <div class="content">
+                            <h3>45,927</h3>
+                            <p>Personas inscritas</p>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="card-info" style="--clr:#cdc04e;">
+                    <div class="box" >
+                        <div class="icon">
+                            <div class="iconBox"><ion-icon name="school"></ion-icon></div>
+                        </div>
+                        <div class="content">
+                            <h3>1,745</h3>
+                            <p>Cursos ofertados</p>
+                        </div>
+                    </div>
+                </div>
+    
+            </div>
+        </div>`,
         title: 'Centro de lenguas 2021-I a 2024-II',
-        xTitle: '',
-        yTitle: '',
-        type: 'bar'
+        type: 'HTML'
     },
     {
         bindto: `#chart${chartNumber++}`,
@@ -416,6 +504,7 @@ const chartObjectsList = [
         },
         title: 'Total de docentes adscritos al Sistema Nacional de Investigación (SNI)', 
         yTitle: 'Docentes',
+        xTitle: 'SNI',
         type: 'line'  
     },
     {
@@ -442,7 +531,7 @@ const chartObjectsList = [
             x : 'x',
             columns: [
                 ['x', 'Nuevas ediciones, reimpresiones y libros digitales en ePUB y PDF', 'Gacetas', 'Textos Fesarnotes'],
-                ['publicaciones', 111, 91, 25],
+                ['Publicaciones', 111, 91, 25],
             ],
             type: 'bar'
         },
@@ -453,27 +542,73 @@ const chartObjectsList = [
     },
     {
         bindto: `#chart${chartNumber++}`,
-        data: {
-            columns: [
-                ["Total de cursos", 400],
-                ["Total de inscripciones registradas", 11213],
-            ],
-        },
+        code: `
+    <div class="body">
+        <div class="container-info">
+            <div class="card-info" style="--clr:#202c56;">
+                <div class="box" >
+                    <div class="icon">
+                        <div class="iconBox"><ion-icon name="body"></ion-icon></div>
+                    </div>
+                    <div class="content">
+                        <h3>400</h3>
+                        <p>Personas inscritas</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-info" style="--clr:#cdc04e;">
+                <div class="box" >
+                    <div class="icon">
+                        <div class="iconBox"><ion-icon name="school"></ion-icon></div>
+                    </div>
+                    <div class="content">
+                        <h3>2,556</h3>
+                        <p>Cursos ofertados</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+        `,
         title: 'Programa de actualización y superación docente (PASD) 2017-2024',
-        colors: colorPallette,
-        type: 'donut'
+        type: 'HTML'
     },
     {
         bindto: `#chart${chartNumber++}`,
-        data:{
-            columns: [
-                ["Personas inscritas", 8961],
-                ["Actividades ofertadas", 52],
-            ],
-        },
-        colors: colorPallette,
-        title: 'Actividades deportivas',
-        type: 'donut'
+        code: `
+    <div class="body">
+        <div class="container-info">
+            <div class="card-info" style="--clr:#202c56;">
+                <div class="box" >
+                    <div class="icon">
+                        <div class="iconBox"><ion-icon name="body"></ion-icon></div>
+                    </div>
+                    <div class="content">
+                        <h3>8,961</h3>
+                        <p>Personas inscritas</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-info" style="--clr:#cdc04e;">
+                <div class="box" >
+                    <div class="icon">
+                        <div class="iconBox"><ion-icon name="barbell"></ion-icon></div>
+                    </div>
+                    <div class="content">
+                        <h3>52</h3>
+                        <p>Actividades ofertadas</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+        `,
+        title: 'Actividades Deportivas',
+        type: 'HTML'
     },
     {
         bindto: `#chart${chartNumber++}`,
@@ -501,7 +636,7 @@ function createLineChart(chartObject,wrapperID){
             columns: chartObject.data.columns,
             type: 'line',
             colors : {
-                // [chartObject.xTitle]: '#202c56'  
+                [chartObject.xTitle]: '#202c56'  
             }
         },
         axis: {
@@ -560,12 +695,23 @@ function createLineChart(chartObject,wrapperID){
     })
 }
 
-function createMultipleLineChart(chartObject,wrapperID){
+function createMultipleLineChart(chartObject, wrapperID) {
+    // Colores predeterminados (puedes ajustar la lista de colores)
+    const defaultColors = ['#cdc04e', '#202c56', '#ff6b6b', '#4caf50', '#ffb74d'];
+
+    // Genera los colores basados en las series de datos en chartObject.data.xs
+    const colors = {};
+    Object.keys(chartObject.data.xs).forEach((key, index) => {
+        colors[key] = defaultColors[index % defaultColors.length];
+    });
+
+    // Genera el gráfico con los colores asignados dinámicamente
     c3.generate({
-        bindto: chartObject.bindto+"-"+wrapperID,
+        bindto: chartObject.bindto + "-" + wrapperID,
         data: {
             xs: chartObject.data.xs,
             columns: chartObject.data.columns,
+            colors: colors
         },
         legend: {
             show: true,
@@ -584,16 +730,15 @@ function createMultipleLineChart(chartObject,wrapperID){
         title: {
             text: chartObject.title,
             position: 'top-center'
-
         },
         axis: {
             x: {
                 type: 'category',
                 tick: {
-                    rotate: chartObject.rotate, // Rotar etiquetas para mejor visibilidad
+                    rotate: chartObject.rotate,
                     multiline: true
                 },
-                height: chartObject.legendHeight != 0 ? chartObject.legendHeight : 70 // Ajuste de altura para espacio de las etiquetas rotadas
+                height: chartObject.legendHeight != 0 ? chartObject.legendHeight : 70
             },
             y: {
                 tick: {
@@ -601,20 +746,21 @@ function createMultipleLineChart(chartObject,wrapperID){
                 },
                 label: {
                     text: chartObject.yTitle,
-                    position: 'outer-middle' 
+                    position: 'outer-middle'
                 }
             }
         },
         point: {
-            r: 5, // Tamaño de los puntos en la línea
+            r: 5,
             focus: {
                 expand: {
-                    r: 7  // Aumenta el tamaño al pasar el mouse
+                    r: 7
                 }
-            },
+            }
         }
-    });  
+    });
 }
+
 
 function createBarChart(chartObject,wrapperID){
     c3.generate({
@@ -633,6 +779,9 @@ function createBarChart(chartObject,wrapperID){
         legend: {
             show: true,
             padding: legendPadding
+        },
+        color: {
+            pattern: ['#202c56', '#cdc04e', '#ff6b6b', '#4caf50', '#ffb74d'] 
         },
         axis: {
             x: {
@@ -695,7 +844,7 @@ function createDonutChart(chartObject,wrapperID){
             padding: legendPadding
         },
         color: {
-            pattern: chartObject.colors
+            pattern: colorPallette
         },
         title: {
             text: chartObject.title
@@ -721,7 +870,7 @@ function createPieChart(chartObject,wrapperID){
             padding: legendPadding
         },
         color: {
-            pattern: chartObject.colors
+            pattern: colorPallette
         },
         title: {
             text: chartObject.title
@@ -754,12 +903,21 @@ function createStackedAreaChart(chartObject, wrapperID){
             padding: legendPadding
         },
         color: {
-            pattern: chartObject.colors
+            pattern: ['#cdc04e', '#202c56', '#ff6b6b', '#4caf50', '#ffb74d'] 
         },
         title: {
             text: chartObject.title
         }
     });
+}
+
+function createHTMLComponent(chartObject, wrapperID){
+    const bindto = chartObject.bindto+"-"+wrapperID;
+    
+    document.getElementById(bindto.replace("#",'')).innerHTML += `
+    <text class='c3-title'>${chartObject.title}</text>
+    ${chartObject.code}
+    `;
 }
 
 //Genera los graficos indicados dentro de la lista de indices 
@@ -787,6 +945,9 @@ function generateCharts(indexChartList, wrapperID){
                 break;
             case 'stackedArea':
                 createStackedAreaChart(g, wrapperID);
+                break;
+            case 'HTML':
+                createHTMLComponent(g, wrapperID);
                 break;
             default:
                 console.log(`[${g.bindto} - ${type}] no se puede construir, no hay función para ello.`)

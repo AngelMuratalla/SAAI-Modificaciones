@@ -1,4 +1,3 @@
-// TODO: Agregar cursor pointer al titulo del acordeon
 
 /* --------------------------------FUNCIONES DE LLENADO---------------------------------------- */
 
@@ -257,43 +256,117 @@ const chartObjectsList = [
     },
     {   
         bindto: `#chart${chartNumber++}`, 
-        data: {
-            columns: [
-                ['Programas de servicio social', 816],
-                ['Ganadores del premio al servicio social', 58]
-            ],
-        },
+        code: `
+        <div class="body">
+            <div class="container-info">
+                <div class="card-info" style="--clr:#202c56;">
+                    <div class="box" >
+                        <div class="icon">
+                            <div class="iconBox"><ion-icon name="body"></ion-icon></div>
+                        </div>
+                        <div class="content">
+                            <h3>6,418</h3>
+                            <p>Alumnos que concluyeron su servico</p>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="card-info" style="--clr:#C6BFC9;">
+                    <div class="box" >
+                        <div class="icon">
+                            <div class="iconBox"><ion-icon name="extension-puzzle"></ion-icon></div>
+                        </div>
+                        <div class="content">
+                            <h3>816</h3>
+                            <p>Programas ofertados</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-info" style="--clr:#cdc04e;">
+                    <div class="box" >
+                        <div class="icon">
+                            <div class="iconBox"><ion-icon name="trophy"></ion-icon></div>
+                        </div>
+                        <div class="content">
+                            <h3>58</h3>
+                            <p>Ganadores del premio al servicio social</p>
+                        </div>
+                    </div>
+                </div>
+    
+            </div>
+        </div>`,
         title: 'Servicio Social',
-        colors: colorPallette,
-        type: 'donut',
+        type: 'HTML',
     },
     {
         bindto: `#chart${chartNumber++}`, 
-        data: {
-            columns: [
-                ['Comunidad atendida', 23630],
-                ['Cursos realizados', 1097]
-            ],
-            type: 'bar'
-        },
+        code: `
+        <div class="body">
+            <div class="container-info">
+                <div class="card-info" style="--clr:#202c56;">
+                    <div class="box" >
+                        <div class="icon">
+                            <div class="iconBox"><ion-icon name="body"></ion-icon></div>
+                        </div>
+                        <div class="content">
+                            <h3>23,630</h3>
+                            <p>Comunidad Atendida</p>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="card-info" style="--clr:#cdc04e;">
+                    <div class="box" >
+                        <div class="icon">
+                            <div class="iconBox"><ion-icon name="school"></ion-icon></div>
+                        </div>
+                        <div class="content">
+                            <h3>1,097</h3>
+                            <p>Cursos realizados</p>
+                        </div>
+                    </div>
+                </div>
+    
+            </div>
+        </div>`,
         title: 'Educación continua',
-        xTitle: '',
-        yTitle: '',
-        type: 'bar'
+        type: 'HTML'
     },
     {
         bindto: `#chart${chartNumber++}`,
-        data: {
-            columns: [
-                ['Estudiantes inscritos', 45927],
-                ['Número de cursos', 1745]
-            ],
-            type: 'bar'
-        },
+        code: `
+        <div class="body">
+            <div class="container-info">
+                <div class="card-info" style="--clr:#202c56;">
+                    <div class="box" >
+                        <div class="icon">
+                            <div class="iconBox"><ion-icon name="body"></ion-icon></div>
+                        </div>
+                        <div class="content">
+                            <h3>45,927</h3>
+                            <p>Personas inscritas</p>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="card-info" style="--clr:#cdc04e;">
+                    <div class="box" >
+                        <div class="icon">
+                            <div class="iconBox"><ion-icon name="school"></ion-icon></div>
+                        </div>
+                        <div class="content">
+                            <h3>1,745</h3>
+                            <p>Cursos ofertados</p>
+                        </div>
+                    </div>
+                </div>
+    
+            </div>
+        </div>`,
         title: 'Centro de lenguas 2021-I a 2024-II',
-        xTitle: '',
-        yTitle: '',
-        type: 'bar'
+        type: 'HTML'
     },
     {
         bindto: `#chart${chartNumber++}`,
@@ -470,126 +543,6 @@ const chartObjectsList = [
     {
         bindto: `#chart${chartNumber++}`,
         code: `
-<style>
-        /* Importamos fuente Poppins */
-
-        :root{
-            --background: #fff;
-            --text-color: #282828; 
-            /* --text-color: #fff;  */
-        }
-
-        /* Normalizar estilos */
-
-        .body{
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: var(--background);
-
-            font-size: 12px;
-            padding: 32px;
-
-            width: 100%;
-            height: auto;
-        }
-
-        .container-info {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 5em; /* 80px -> 5em */
-        }
-
-        .container-info .card-info{
-            position: relative;
-            width: 18.75em; /* 300px -> 18.75em */
-            height: 21.875em; /* 350px -> 21.875em */
-            border-radius: 1.25em; /* 20px -> 1.25em */
-            border-top-left-radius: 4.375em; /* 70px -> 4.375em */
-            overflow: hidden;
-            background-color: var(--clr);
-        }
-
-        .box{
-            position: absolute;
-            inset: 0.625em; /* 10px -> 0.625em */
-            background-color: var(--background);
-        }
-
-        .icon{
-            position: absolute;
-            width: 8.75em; /* 140px -> 8.75em */
-            height: 8.75em; /* 140px -> 8.75em */
-            border-bottom-right-radius: 50%;
-            transition: 0.5s;
-            background-color: var(--clr);
-        }
-
-        .icon::before{
-            content: '';
-            position: absolute;
-            bottom: -1.875em; /* 30px -> 1.875em */
-            left: 0;
-            width: 1.875em; /* 30px -> 1.875em */
-            height: 1.875em; /* 30px -> 1.875em */
-            background: transparent;
-            border-top-left-radius: 1.875em; /* 30px -> 1.875em */
-            box-shadow: -0.3125em -0.3125em 0 0.3125em var(--clr); /* -5px -5px 0 5px -> -0.3125em -0.3125em 0 0.3125em */
-        }
-
-        .icon::after{
-            content: '';
-            position: absolute;
-            right: -1.875em; /* 30px -> 1.875em */
-            top: 0;
-            width: 1.875em; /* 30px -> 1.875em */
-            height: 1.875em; /* 30px -> 1.875em */
-            background: transparent;
-            border-top-left-radius: 1.875em; /* 30px -> 1.875em */
-            box-shadow: -0.3125em -0.3125em 0 0.3125em var(--clr); /* -5px -5px 0 5px -> -0.3125em -0.3125em 0 0.3125em */
-        }
-
-        .iconBox{
-            position: absolute;
-            inset: 0.625em; /* 10px -> 0.625em */
-            background-color: var(--background);
-            border-radius: 50%;
-            border-top-right-radius: 0.625em; /* 10px -> 0.625em */
-            border-bottom-left-radius: 0.625em; /* 10px -> 0.625em */
-
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-weight: 600;
-        }
-
-        .iconBox ion-icon{
-            font-size: 4em;
-            color: var(--text-color);
-            --ionicon-stroke-width: 20px;
-        }
-
-        .content{
-            position: absolute;
-            top: 8.125em; /* 130px -> 8.125em */
-            padding: 1.25em; /* 20px -> 1.25em */
-            text-align: center;
-            width: 100%;
-        }
-
-        .content h3, .content p{
-            color: var(--text-color);
-        }
-
-        .content h3{
-            font-size: 2.5em; /* 40px -> 2.5em */
-        }
-
-    </style>
-    
-
     <div class="body">
         <div class="container-info">
             <div class="card-info" style="--clr:#202c56;">
@@ -625,126 +578,6 @@ const chartObjectsList = [
     {
         bindto: `#chart${chartNumber++}`,
         code: `
-<style>
-        /* Importamos fuente Poppins */
-
-        :root{
-            --background: #fff;
-            --text-color: #282828; 
-            /* --text-color: #fff;  */
-        }
-
-        /* Normalizar estilos */
-
-        .body{
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: var(--background);
-
-            font-size: 12px;
-            padding: 32px;
-
-            width: 100%;
-            height: auto;
-        }
-
-        .container-info {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 5em; /* 80px -> 5em */
-        }
-
-        .container-info .card-info{
-            position: relative;
-            width: 18.75em; /* 300px -> 18.75em */
-            height: 21.875em; /* 350px -> 21.875em */
-            border-radius: 1.25em; /* 20px -> 1.25em */
-            border-top-left-radius: 4.375em; /* 70px -> 4.375em */
-            overflow: hidden;
-            background-color: var(--clr);
-        }
-
-        .box{
-            position: absolute;
-            inset: 0.625em; /* 10px -> 0.625em */
-            background-color: var(--background);
-        }
-
-        .icon{
-            position: absolute;
-            width: 8.75em; /* 140px -> 8.75em */
-            height: 8.75em; /* 140px -> 8.75em */
-            border-bottom-right-radius: 50%;
-            transition: 0.5s;
-            background-color: var(--clr);
-        }
-
-        .icon::before{
-            content: '';
-            position: absolute;
-            bottom: -1.875em; /* 30px -> 1.875em */
-            left: 0;
-            width: 1.875em; /* 30px -> 1.875em */
-            height: 1.875em; /* 30px -> 1.875em */
-            background: transparent;
-            border-top-left-radius: 1.875em; /* 30px -> 1.875em */
-            box-shadow: -0.3125em -0.3125em 0 0.3125em var(--clr); /* -5px -5px 0 5px -> -0.3125em -0.3125em 0 0.3125em */
-        }
-
-        .icon::after{
-            content: '';
-            position: absolute;
-            right: -1.875em; /* 30px -> 1.875em */
-            top: 0;
-            width: 1.875em; /* 30px -> 1.875em */
-            height: 1.875em; /* 30px -> 1.875em */
-            background: transparent;
-            border-top-left-radius: 1.875em; /* 30px -> 1.875em */
-            box-shadow: -0.3125em -0.3125em 0 0.3125em var(--clr); /* -5px -5px 0 5px -> -0.3125em -0.3125em 0 0.3125em */
-        }
-
-        .iconBox{
-            position: absolute;
-            inset: 0.625em; /* 10px -> 0.625em */
-            background-color: var(--background);
-            border-radius: 50%;
-            border-top-right-radius: 0.625em; /* 10px -> 0.625em */
-            border-bottom-left-radius: 0.625em; /* 10px -> 0.625em */
-
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-weight: 600;
-        }
-
-        .iconBox ion-icon{
-            font-size: 4em;
-            color: var(--text-color);
-            --ionicon-stroke-width: 20px;
-        }
-
-        .content{
-            position: absolute;
-            top: 8.125em; /* 130px -> 8.125em */
-            padding: 1.25em; /* 20px -> 1.25em */
-            text-align: center;
-            width: 100%;
-        }
-
-        .content h3, .content p{
-            color: var(--text-color);
-        }
-
-        .content h3{
-            font-size: 2.5em; /* 40px -> 2.5em */
-        }
-
-    </style>
-    
-
     <div class="body">
         <div class="container-info">
             <div class="card-info" style="--clr:#202c56;">
